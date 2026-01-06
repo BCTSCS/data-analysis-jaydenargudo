@@ -27,13 +27,20 @@ public class TextProcessor {
       // get each line in textlist
       for(int i = 0; i < textList.size(); i++){
         String line = textList.get(i);
-        ArrayList<String> words = FileOperator.getWords(line);
-        for (int j = 0; j < words.size(); j++){
-          if (words.get(j).equals(stop)) {
-            words.remove(j);
-          }
-        }
-        textList.set(i, String.join(" ", words));
+        line = line.replaceAll(" " + stop + " ", ""); //middle
+        
+        // line = line.beginsWith(stop)?; //beginning
+
+        line = line.replace(" "+stop+"\n", "\n");
+
+        textList.set(i, line);
+        // ArrayList<String> words = FileOperator.getWords(line);
+        // for (int j = 0; j < words.size(); j++){
+        //   if (words.get(j).equals(stop)) {
+        //     words.remove(j);
+        //   }
+        // }
+        // textList.set(i, String.join(" ", words));
       }
     }
   }
@@ -59,7 +66,8 @@ public class TextProcessor {
         ArrayList<String> stopwords = FileOperator.getStringList("stopwords.txt");
         ArrayList<String> posts = FileOperator.getStringList("posts.txt");
         TextProcessor t = new TextProcessor(posts);
-
+        t.removeStopWords(stopwords);
+        System.out.println(t);
     }
     
 }
