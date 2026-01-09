@@ -27,6 +27,8 @@ public class TextProcessor {
       // get each line in textlist
       for(int i = 0; i < textList.size(); i++){
         String line = textList.get(i);
+
+        //Method 1
         line = line.replaceAll(" " + stop + " ", ""); //middle
         
         // line = line.beginsWith(stop)?; //beginning
@@ -34,6 +36,8 @@ public class TextProcessor {
         line = line.replace(" "+stop+"\n", "\n");
 
         textList.set(i, line);
+
+        //Method 2
         // ArrayList<String> words = FileOperator.getWords(line);
         // for (int j = 0; j < words.size(); j++){
         //   if (words.get(j).equals(stop)) {
