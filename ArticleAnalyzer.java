@@ -1,5 +1,6 @@
 import java.util.ArrayList;
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class ArticleAnalyzer {
 
@@ -46,19 +47,19 @@ public class ArticleAnalyzer {
         if (linkM.find()){ 
             link = linkM.group(1);
         }
-        else if (headlineM.find()){ 
+        if (headlineM.find()){ 
             headline = headlineM.group(1);
         }
-        else if (categoryM.find()){ 
+        if (categoryM.find()){ 
             category = categoryM.group(1);
         }
-        else if (descriptionM.find()){ 
+        if (descriptionM.find()){ 
             description = descriptionM.group(1);
         }
-        else if (authorM.find()){ 
+        if (authorM.find()){ 
             author = authorM.group(1);
         }
-        else if (dateM.find()){ 
+        if (dateM.find()){ 
             date = dateM.group(1);
         }
         return new Article(author, category, date, description, headline, link);
@@ -75,7 +76,8 @@ public class ArticleAnalyzer {
     } 
     public static void main(String[] args) {
         ArticleAnalyzer analyzer = new ArticleAnalyzer();
-        ArrayList<String> jsonLines = FileOperator.getStringList("News_Category_Dataset_v3.json");
+        // ArrayList<String> jsonLines = FileOperator.getStringList("News_Category_Dataset_v3.json");
+        ArrayList<String> jsonLines = FileOperator.getStringList("data.txt");
 
         for (String line : jsonLines) {
             Article article = analyzer.parseJson(line);
