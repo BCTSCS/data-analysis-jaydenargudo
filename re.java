@@ -2,9 +2,12 @@ import java.util.*;
 
 public class re {
     public static void main(String[] args) {
-        String re = "#\\w\\s";
+        String re = "#\\d{3}-\\d{2}-\\d{4}";
+        String re2 = "#[A-Za-z]+";
 
-        String t = "ABBBBBBBA";
+        String text = "616-33-4567";
+        boolean r = text.matches(re);
+        // System.err.println(r);
 
         //read posts.txt
         //Step 1 FileOperator obj
@@ -12,10 +15,10 @@ public class re {
         // System.out.println(posts);
 
         //Iterate each post and fine the #\w
-        // for (String post : posts) {
-        //     boolean result = post.matches(re);
-        //     System.out.println(post + " : " + result);
-        // }
+        for (String post : posts) {
+            boolean result = post.matches(re2);
+            System.out.println(post + " : " + result);
+        }
 
 
         //Check zipcodes to see if they match the pattern
@@ -28,15 +31,15 @@ public class re {
         // }
 
         //Find all words that start with a capital letter
-        String[] words = {"Apple", "banana", "Orange", "grape", "Pineapple"};
-        String capitalWords = "\\b[A-Z][a-zA-Z]*\\b";
+        // String[] words = {"Apple", "banana", "Orange", "grape", "Pineapple"};
+        // String capitalWords = "\\b[A-Z][a-zA-Z]*\\b";
 
-        for (String word : words) {
-            boolean result = word.matches(capitalWords);
-            if (result == true) {
-                System.out.println(word + " is a capitalized word.");
-            }
-        }
+        // for (String word : words) {
+        //     boolean result = word.matches(capitalWords);
+        //     if (result == true) {
+        //         System.out.println(word + " is a capitalized word.");
+        //     }
+        // }
 
 
         // boolean result = t.matches(re);
