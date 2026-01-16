@@ -6,6 +6,11 @@ public class Article {
     private String author;
     private String date;
 
+    @Override
+    public String toString() {
+        return headline + ", description" + description;
+    }
+    
     public Article(String author, String category, String date, String description, String headline, String link) {
         this.author = author;
         this.category = category;
@@ -15,10 +20,6 @@ public class Article {
         this.link = link;
     }
 
-    @Override
-    public String toString() {
-        return headline + ", description" + description;
-    }
 
     public String getLink() {
         return link;
