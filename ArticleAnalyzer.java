@@ -105,26 +105,44 @@ public class ArticleAnalyzer {
     private ArrayList<String> stopWords; //load from FileOperators
     private ArrayList<Article> articles; //load from FileOperators json 
 
+    private static ArrayList<String> words;
+    private static ArrayList<Double> values;
+
     public ArticleAnalyzer(){
         stopWords=FileOperator.getStringList("stopwords.txt");
         System.out.println("Stop Word count"+stopWords.size());
         articles=new ArrayList<>();
+        words = new ArrayList<>();
+        values = new ArrayList<>();
         System.out.println("Articles count"+articles.size());
 
 
 
     }
     public static void main(String[] args) {
-       ArticleAnalyzer riano = new ArticleAnalyzer();
-       ArrayList<String> lines= FileOperator.getStringList("data.txt");
-       
-        for(String line : lines){
-            Article a=riano.parseJson(line);
-            String clean=riano.removeStopWords(a.getDescription());
-            a.setDescription(clean);
-            System.out.println(a);
-            riano.addArticle(a);
-        }
+    //    ArticleAnalyzer riano = new ArticleAnalyzer();
+    //    ArrayList<String> lines= FileOperator.getStringList("data.txt");
+       ArrayList<String> sentiments = FileOperator.getStringList("sentiments.txt");
+       ArticleAnalyzer analyzer = new ArticleAnalyzer();
+       String regex = "([A-Za-z0-9]+),(-?\\d*\\.\\d+)";
+
+       for (String sentiment : sentiments){
+            Pattern l = Pattern.compile(regex);
+            Matcher lm = l.matcher(sentiment);
+            boolean found = lm.find();
+            String word = found ? lm.group(1) : "";
+            Double value = found ? Double.parseDouble(lm.group(2)) : 0.0;
+            System.out.println(word + " -> " + value);
+            words.add(word);
+            values.add(value);
+       }
+        // for(String line : lines){
+        //     Article a =riano.parseJson(line);
+        //     String clean=riano.removeStopWords(a.getDescription());
+        //     a.setDescription(clean);
+        //     System.out.println(a);
+        //     riano.addArticle(a);
+        // }
        
 
 
@@ -176,7 +194,7 @@ public class ArticleAnalyzer {
  
     public String removeStopWords(String text){
         
-        String result="";
+        // String result="";
 
         for(String word : stopWords) {
             text = text.replaceAll("\\b" + word + "\\b", "");
