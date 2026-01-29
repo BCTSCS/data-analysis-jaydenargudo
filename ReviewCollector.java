@@ -148,7 +148,7 @@ public class ReviewCollector {
         System.out.println("Good reviews for iPhone 14 Pro: " + rc.getNumGoodReviews("iPhone 14 Pro"));
         System.out.println("Good reviews for Samsung Galaxy Buds: " + rc.getNumGoodReviews("Samsung Galaxy Buds"));        
         System.out.println("Good reviews for Nintendo Switch OLED: " + rc.getNumGoodReviews("Nintendo Switch OLED"));
-}
+    }
 
   
 }
